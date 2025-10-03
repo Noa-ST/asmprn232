@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # copy csproj và restore
-COPY *.csproj ./
-RUN dotnet restore
+COPY ASMPRN232.csproj ./
+RUN dotnet restore ASMPRN232.csproj
 
 # copy toàn bộ source và build
 COPY . .
