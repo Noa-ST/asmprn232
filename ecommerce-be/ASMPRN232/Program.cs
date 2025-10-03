@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("https://asmprn232.vercel.app") 
+        policy => policy.WithOrigins("https://asmprn232-rj75z43v6-kiets-projects-cf5dfcab.vercel.app")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
