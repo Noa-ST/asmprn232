@@ -3,13 +3,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # copy csproj và restore
-COPY *.sln .
-COPY ecommerce-be/*.csproj ./ecommerce-be/
-RUN dotnet restore ecommerce-be/*.csproj
+COPY ASMPRN232/ASMPRN232.csproj ./ASMPRN232/
+RUN dotnet restore ASMPRN232/ASMPRN232.csproj
 
-# copy toàn bộ và build
-COPY ecommerce-be/. ./ecommerce-be/
-WORKDIR /src/ecommerce-be
+# copy toàn bộ source và build
+COPY ASMPRN232/. ./ASMPRN232/
+WORKDIR /src/ASMPRN232
 RUN dotnet publish -c Release -o /app/publish
 
 # Runtime stage
