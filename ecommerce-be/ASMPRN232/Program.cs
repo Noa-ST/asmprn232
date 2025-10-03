@@ -14,28 +14,32 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy => policy
-            .AllowAnyOrigin()   
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// ❌ Bỏ tạm https redirect để test
+// app.UseHttpsRedirection();
 
-// ✅ Bật CORS (cho phép tất cả)
 app.UseCors("AllowFrontend");
+
+// ❌ Comment nếu chưa có login
+// app.UseAuthorization();
 
 app.MapControllers();
 
