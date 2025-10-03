@@ -3,12 +3,11 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # copy csproj và restore
-COPY ASMPRN232/ASMPRN232.csproj ./ASMPRN232/
-RUN dotnet restore ASMPRN232/ASMPRN232.csproj
+COPY *.csproj ./
+RUN dotnet restore
 
 # copy toàn bộ source và build
-COPY ASMPRN232/. ./ASMPRN232/
-WORKDIR /src/ASMPRN232
+COPY . .
 RUN dotnet publish -c Release -o /app/publish
 
 # Runtime stage
