@@ -17,9 +17,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("https://asmprn232-rj75z43v6-kiets-projects-cf5dfcab.vercel.app")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod());
+        policy => policy
+            .AllowAnyOrigin()   
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
 
 var app = builder.Build();
@@ -35,8 +36,6 @@ app.UseHttpsRedirection();
 
 // ✅ Bật CORS (cho phép tất cả)
 app.UseCors("AllowFrontend");
-
-app.UseAuthorization();
 
 app.MapControllers();
 
